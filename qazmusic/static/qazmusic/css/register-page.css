@@ -1,0 +1,38 @@
+.register-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: initial;
+}
+
+.register-card, .login-card {
+    width: 25rem;
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.login-card {
+    height: 20rem;
+}
+
+.register-card > form {
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.login-card > form {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.captcha {
+    width: 8rem;
+}

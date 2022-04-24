@@ -1,0 +1,19 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/upload-page.css' %}">
+    <link rel="stylesheet" href="{% static 'qazmusic/css/register-page.css' %}">
+    <main class="register-page">
+        <div class="register-card">
+            <h1>Register</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for label in form %}
+                    <p><label class="form-label" for="{{ label.id_for_label }}">{{ label.label }}</label>{{ label }}</p>
+                    <div class="form-error">{{ label.errors }}</div>
+                {% endfor %}
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

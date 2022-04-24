@@ -1,0 +1,32 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/artists-list.css' %}">
+    <main class="artists-page">
+        <h2>Lyrics</h2>
+        <div class="cards">
+            {% for lyric in lyrics %}
+                {% for track in tracks %}
+                    {% if track.pk == lyric.track_id_id %}
+                        <div class="card-div">
+                            <div class="top">
+                                <div class="first"
+                                     style="background-color: #8860d0">
+                                </div>
+                                <div class="second">
+                                    <span>{{ track.title }}</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <p>{{ lyric.poet }}</p>
+                                <a href="{{ lyric.get_absolute_url }}">
+                                    Listen
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

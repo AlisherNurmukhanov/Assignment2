@@ -1,0 +1,33 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/artists-list.css' %}">
+
+    <main class="artists-page">
+        <h2>Popular artists</h2>
+        <div class="cards">
+            {% for artist in artists_list %}
+                <div class="card-div">
+                    <div class="top">
+                        <div class="first"
+                             style="background: url('{{ artist.photo.url }}') no-repeat center;
+                                     background-size: cover;
+                                     "
+                        >
+                        </div>
+                        <div class="second">
+                            <span>{{ artist.name }} {{ artist.surname }}</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <span>{{ artist.repertoire }} songs</span>
+                        <a href="{{ artist.get_absolute_url }}">
+                            Listen
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock %}

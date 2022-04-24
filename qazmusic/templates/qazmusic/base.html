@@ -1,0 +1,92 @@
+{% load static %}
+{#{% load cache %}#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'qazmusic/img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'qazmusic/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'qazmusic/css/index.css' %}">
+</head>
+<body>
+{#{% cache 60 header %}#}
+<header>
+    <div class="logo-div">
+        <a href="{% url 'home' %}">
+            <div>
+                qazmusic
+            </div>
+        </a>
+    </div>
+    <div class="header-menu-div">
+        <ul>
+            {% for title, url_name in header_menu.items %}
+                <li>
+                    <a href="{% url url_name %}">
+                        {{ title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="user-div">
+        <div class="user-div-inner">
+            {% if request.user.is_authenticated %}
+                <span class="username-span">
+                    <div>
+                        {{ user.username }}
+                    </div>
+                    <a href="{% url 'logout' %}">
+                        Logout
+                    </a>
+                </span>
+            {% else %}
+                <span class="auth-span">
+                    <a href="{% url 'register' %}">Register</a>
+                    <a href="{% url 'login' %}">Login</a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</header>
+{#{% endcache %}#}
+
+{% block content %}
+
+{% endblock %}
+{#{% if page_obj.has_other_pages %}#}
+{#    <nav class="pagination-list">#}
+{#        <ul>#}
+{#            {% if page_obj.has_previous %}#}
+{#                <li class="page-num">#}
+{#                    <a href="?page={{ page_obj.previous_page_number }}">&larr;</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{##}
+{#            {% for p in paginator.page_range %}#}
+{#                {% if page_obj.number == p %}#}
+{#                    <li class="page-selected">#}
+{#                        {{ p }}#}
+{#                    </li>#}
+{#                {% else %}#}
+{#                    <li class="page-num">#}
+{#                        <a href="?page={{ p }}">#}
+{#                            {{ p }}#}
+{#                        </a>#}
+{#                    </li>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{##}
+{#            {% if page_obj.has_next %}#}
+{#                <li class="page-num">#}
+{#                    <a href="?page={{ page_obj.next_page_number }}">&rarr;</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    </nav>#}
+{#{% endif %}#}
+
+</body>
+</html>

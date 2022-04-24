@@ -1,0 +1,17 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/artist-view.css' %}">
+    <main class="delete-page">
+        <form class="warning-div" method="POST" action="{% url 'delete_track' item.pk %}">
+            {% csrf_token %}
+            <span>Are you sure delete this track? &nbsp;"{{ item }}"</span>
+            <div class="confirm-div">
+                <div>
+                    <a href="{% url 'artists' %}">No</a>
+                    <button type="submit" name="confirm">Yes</button>
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}

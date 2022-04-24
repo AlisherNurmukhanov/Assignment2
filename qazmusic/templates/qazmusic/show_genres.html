@@ -1,0 +1,28 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/artists-list.css' %}">
+    <main class="artists-page">
+        <h2>Genres</h2>
+        <div class="cards">
+            {% for genre in genres %}
+                <div class="card-div">
+                    <div class="top">
+                        <div class="first"
+                             style="background-color: #8860d0">
+                        </div>
+                        <div class="second">
+                            <span>{{ genre.title }}</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        {#                        <span>{{ genre. }} songs</span>#}
+                        <a href="{{ genre.get_absolute_url }}">
+                            Listen
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

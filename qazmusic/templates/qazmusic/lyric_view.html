@@ -1,0 +1,27 @@
+{% extends 'qazmusic/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'qazmusic/css/artist-view.css' %}">
+    <link rel="stylesheet" href="{% static 'qazmusic/css/audio-player.css' %}">
+    <main class="artist-view-page">
+        <div class="left">
+            <div class="artist-card">
+                <div class="artist-photo"
+                     style="background: url('{{ artist.photo.url }}') no-repeat center;
+                             background-size: cover">
+                </div>
+                <div class="artist-info">
+                    <h2>{{ track_title }}</h2>
+                    <h4>{{ artist.name }} {{ artist.surname }}</h4>
+                    <p>{{ lyric.poet }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h2>Lyric</h2>
+            <div>
+                {{ lyric.content | linebreaks }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,188 @@
+.artist-view-page {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 85%;
+    margin: 2rem;
+}
+
+.left {
+    display: block;
+    width: 40%;
+    height: 100%;
+}
+
+.left > .artist-card {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.artist-card > .artist-photo {
+    width: 40%;
+    height: 100%;
+}
+
+.artist-card > .artist-info {
+    width: 55%;
+    height: 100%;
+    padding: 0;
+}
+
+.artist-info h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.right {
+    width: 55%;
+    height: 100%;
+}
+
+.right h2 {
+    padding: 0;
+    margin: 0;
+    color: #5690e9;
+}
+
+.right .track-div {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.track-div p {
+    padding: 0;
+    margin: 0;
+    color: #003366;
+    font-weight: 500;
+}
+
+.track-div audio {
+    width: 100%;
+}
+
+.track-div > div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.track-div > div > span {
+    width: 25%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.track-div > div > span > a {
+    width: 5rem;
+    height: 2rem;
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.track-div > div > span > .edit {
+    background-color: #f5dd5d;
+    color: #5690e9;
+}
+
+.track-div > div > span > .delete {
+    background-color: #CC3434;
+}
+
+
+/* effects */
+.track-div > div > span > .edit:hover {
+    background-color: #d4c052;
+}
+
+.track-div > div > span > .delete:hover {
+    background-color: #ff5a5a;
+}
+
+.delete-page {
+    width: 100%;
+    height: 86vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5b80b2;
+}
+
+.delete-page > .warning-div {
+    width: 30rem;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.delete-page > .warning-div > span {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.delete-page > .warning-div > .confirm-div {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.confirm-div > div {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirm-div > div > button,
+.confirm-div > div > a {
+    width: 5rem;
+    height: 2rem;
+    font-family: inherit;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #CC3434;
+    font-size: 1rem;
+}
+
+.confirm-div > div > a {
+    background-color: #5690e9;
+}
+
+.confirm-div > div > button:hover {
+    background-color: #ff5a5a;
+}
+
+.confirm-div > div > a:hover {
+    background-color: #4ac1f7;
+}
