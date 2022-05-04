@@ -6,6 +6,11 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//db.onlinewebfonts.com/c/3752a0f4c3f80b95df1301564a50b30e?family=Nexa+Black" rel="stylesheet" type="text/css"/>
+    <link href="//db.onlinewebfonts.com/c/a05747eaf46bae50f19dfa950b86befd?family=Mark+Pro+Medium" rel="stylesheet" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'qazmusic/img/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'qazmusic/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'qazmusic/css/index.css' %}">
@@ -56,37 +61,6 @@
 {% block content %}
 
 {% endblock %}
-{#{% if page_obj.has_other_pages %}#}
-{#    <nav class="pagination-list">#}
-{#        <ul>#}
-{#            {% if page_obj.has_previous %}#}
-{#                <li class="page-num">#}
-{#                    <a href="?page={{ page_obj.previous_page_number }}">&larr;</a>#}
-{#                </li>#}
-{#            {% endif %}#}
-{##}
-{#            {% for p in paginator.page_range %}#}
-{#                {% if page_obj.number == p %}#}
-{#                    <li class="page-selected">#}
-{#                        {{ p }}#}
-{#                    </li>#}
-{#                {% else %}#}
-{#                    <li class="page-num">#}
-{#                        <a href="?page={{ p }}">#}
-{#                            {{ p }}#}
-{#                        </a>#}
-{#                    </li>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{##}
-{#            {% if page_obj.has_next %}#}
-{#                <li class="page-num">#}
-{#                    <a href="?page={{ page_obj.next_page_number }}">&rarr;</a>#}
-{#                </li>#}
-{#            {% endif %}#}
-{#        </ul>#}
-{#    </nav>#}
-{#{% endif %}#}
 
 </body>
 </html>

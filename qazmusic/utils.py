@@ -6,13 +6,13 @@ header_menu = {
     'Charts': 'charts',
     'Lyrics': 'lyrics',
     'Golden fund': 'archive',
-    'Upload music': 'upload'
+    'Upload': 'upload',
+    'Contacts': 'contacts',
 }
 
 
 # mixins
 class DataMixin:
-    # paginate_by = 5
 
     def get_user_context(self, **kwargs):
         context = kwargs

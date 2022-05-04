@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ShowBusinessKazakhstan.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'qazmusic/templates']
+        'DIRS': [BASE_DIR / 'qazmusic/templates', os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -139,6 +139,7 @@ CACHES = {
 # E-Mail settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'  # 587
-# EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = '200103339@stu.sdu.edu.kz'
+EMAIL_HOST_PASSWORD = '62711156'
+EMAIL_USE_TLS = True

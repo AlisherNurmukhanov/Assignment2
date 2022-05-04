@@ -41,4 +41,11 @@ class LoginUserForm(AuthenticationForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
 
+class ContactsForm(forms.Form):
+    email = forms.EmailField(label='E-Mail', widget=forms.EmailInput)
+    subject = forms.CharField(max_length=255, label='Subject')
+    content = forms.CharField(widget=forms.Textarea, label='Message')
+    photo = forms.ImageField(widget=forms.FileInput, label='Image')
+
+
 

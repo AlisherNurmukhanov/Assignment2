@@ -24,6 +24,7 @@ class Artists(models.Model):
 
 class Genres(models.Model):
     title = models.CharField(max_length=50, db_index=True)
+    photo = models.ImageField(upload_to='genres/')
 
     def get_absolute_url(self):
         return reverse('genre-view', kwargs={
@@ -59,6 +60,7 @@ class Lyrics(models.Model):
     poet = models.CharField(max_length=255, db_index=True, null=True)
     composer = models.CharField(max_length=255, db_index=True, null=True)
     content = models.TextField(blank=True)
+    photo = models.ImageField(upload_to='lyrics/')
 
     def get_absolute_url(self):
         return reverse('lyric-view', kwargs={
@@ -76,6 +78,7 @@ class Lyrics(models.Model):
 
 class Charts(models.Model):
     title = models.CharField(max_length=255, db_index=True, unique=True)
+    photo = models.ImageField(upload_to='charts/')
     number_of_tracks = models.ManyToManyField(Tracks, blank=True)
 
     def get_absolute_url(self):

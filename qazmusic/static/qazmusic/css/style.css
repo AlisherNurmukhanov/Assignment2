@@ -1,7 +1,7 @@
 html, body {
     width: 100%;
     height: 100vh;
-    font-family: "Mark Pro", sans-serif;
+    font-family: "Mark Pro medium", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -18,7 +18,7 @@ header {
 .logo-div {
     position: relative;
     width: 20%;
-    font-family: "Nexa Black", serif;
+    font-family: "Nexa Black", sans-serif;
 }
 
 .logo-div a {
@@ -33,6 +33,7 @@ header {
     color: white;
     animation: color-fade 5s infinite alternate-reverse;
     transition: all 0.4s ease;
+
     cursor: pointer;
 }
 

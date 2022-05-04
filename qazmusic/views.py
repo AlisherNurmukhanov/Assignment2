@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
-from django.core.mail import *
+from django.core.mail import EmailMessage
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import *
@@ -135,25 +136,26 @@ class RegisterUser(DataMixin, CreateView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def form_valid(self, form):
-        # mail = EmailMessage(
-        #     'Verify email',
-        #     'Please, verify the your account',
-        #     settings.EMAIL_HOST_USER,
-        #     to=[form.cleaned_data.get('email')]
-        # )
-        # mail.send()
+        mail = EmailMessage(
+             'Verify email',
+             'Please, verify the your account',
+             settings.EMAIL_HOST_USER,
+             to=[form.cleaned_data.get('email')]
+        )
+        mail.fail_silently = False
+        mail.send()
 
-        # if mail:
-        user = form.save()
-        login(self.request, user)
-        return redirect('home')
-    # else:
-    #     return redirect('register')
+        if mail:
+            user = form.save()
+            login(self.request, user)
+            return redirect('home')
+        else:
+            return redirect('register')
 
 
 # логин (авторизация)
 class LoginUser(DataMixin, LoginView):
-    form_class = AuthenticationForm
+    form_class = LoginUserForm
     template_name = 'qazmusic/auth.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -242,122 +244,37 @@ def delete_track(request, pk):
     }
     return render(request, 'qazmusic/delete_track.html', context=context)
 
-# def get_api(request):
-#     response_data = dict(serializers.serialize('json', get_tracks()))
-#
-#     return JsonResponse(response_data)
 
-# def index(request):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'username': 'Aibolat Batyrov'
-#     }
-#     return render(request, 'qazmusic/index.html', context=context)
+def show_contacts_page(request):
+    is_send_message = False
+    is_exists_error = False
 
+    if request.method == 'POST':
+        contact_form = ContactsForm(request.POST, request.FILES)
 
-# def artists_view(request):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists_list': get_artists()
-#     }
-#     return render(request, 'qazmusic/artists.html', context=context)
+        if contact_form.is_valid():
+            subject = contact_form.cleaned_data['subject']
+            content = contact_form.cleaned_data['content']
+            email = contact_form.cleaned_data['email']
+            photo = request.FILES['photo']
 
+            mail = EmailMessage(subject, content, settings.EMAIL_HOST_USER, to=[email])
+            mail.attach(photo.name, photo.read())
+            mail.send()
 
-# def artist_page(request, artist_id, fullname):
-#     context = {
-#         'title': fullname,
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists': get_artists(),
-#         'artist_id': artist_id,
-#         'tracks_artists': get_tracks_artists(artist_id)
-#     }
-#
-#     return render(request, 'qazmusic/artist-view.html', context=context)
+            if mail:
+                is_send_message = True
+            else:
+                is_exists_error = True
+    else:
+        contact_form = ContactsForm()
 
+    context = {
+        'form': contact_form,
+        'is_send_message': is_send_message,
+        'header_menu': header_menu,
+        'is_exists_error': is_exists_error,
+        'title': 'Contacts'
+    }
 
-# def show_genres(request):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists': get_artists(),
-#         'genres': get_genres()
-#     }
-#
-#     return render(request, 'qazmusic/show_genres.html', context=context)
-
-
-# def genre_view(request, genre_id, title):
-#     context = {
-#         'title': title,
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists': get_artists(),
-#         'genres': get_genres(),
-#         'genre_id': genre_id
-#     }
-#
-#     return render(request, 'qazmusic/genre_view.html', context=context)
-
-
-# def show_charts(request):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'charts': get_charts()
-#     }
-#
-#     return render(request, 'qazmusic/show_charts.html', context=context)
-
-
-# def chart_view(request, chart_id):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists': get_artists(),
-#         'charts': get_charts(),
-#         'chart_id': chart_id,
-#         'tracks_in_chart': get_charts_tracks(chart_id)
-#     }
-#
-#     return render(request, 'qazmusic/chart_view.html', context=context)
-
-
-# def show_lyrics(request):
-#     context = {
-#         'title': 'qazmusic',
-#         'header_menu': header_menu,
-#         'lyric': get_lyrics(),
-#         'artists': get_artists(),
-#         'tracks': get_tracks(),
-#         'lyrics': get_lyrics()
-#     }
-#
-#     return render(request, 'qazmusic/show_lyrics.html', context=context)
-
-
-# def lyric_view(request, lyric_id, track_title):
-#     lyric = get_lyrics().get(pk=lyric_id)
-#     track = get_tracks().get(pk=lyric.track_id_id)
-#     artist = get_artists().get(pk=track.artist_id)
-#
-#     context = {
-#         'title': track_title,
-#         'header_menu': header_menu,
-#         'tracks': get_tracks(),
-#         'artists': get_artists(),
-#         'lyric': lyric,
-#         'lyric_id': lyric_id,
-#         'track_title': track.title,
-#         'artist_photo': artist.photo,
-#         'artist_fullname': artist.name + ' ' + artist.surname
-#     }
-#
-#     return render(request, 'qazmusic/lyric_view.html', context=context)
+    return render(request, 'qazmusic/contacts.html', context=context)

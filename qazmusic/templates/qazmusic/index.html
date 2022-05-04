@@ -3,7 +3,7 @@
 {% block content %}
     <div class="background">
         <main class="home-page">
-            <h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
+            <h1>Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</h1>
         </main>
         <div class="cube"></div>
         <div class="cube"></div>

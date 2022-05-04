@@ -1,0 +1,20 @@
+body{
+    font-family: "Mark Pro medium", sans-serif;
+}
+#header{
+    animation: color-fade 5s infinite alternate-reverse;
+}
+.module caption{
+    animation: color-fade 5s infinite alternate-reverse;
+}
+@keyframes color-fade {
+    0% {
+        background-color: #5ab9ea;
+    }
+    50% {
+        background-color: #5690e9;
+    }
+    100% {
+        background-color: #8860d0;
+    }
+}
